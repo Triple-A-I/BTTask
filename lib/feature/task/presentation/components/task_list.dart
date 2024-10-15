@@ -22,7 +22,7 @@ Widget buildTaskList(BuildContext context) {
             : _buildTaskListView(
                 context, BlocProvider.of<TaskCubit>(context).tasksList);
       } else {
-        return const Center(child: Text("Something went wrong."));
+        return const SizedBox.shrink();
       }
     },
   );

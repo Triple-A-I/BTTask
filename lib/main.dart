@@ -10,27 +10,32 @@ import 'core/services/local_notification_service.dart';
 import 'core/services/service_locator.dart';
 import 'core/services/work_manager_service.dart';
 import 'feature/task/presentation/cubit/task_cubit.dart';
+import 'feature/task/presentation/cubit/theme_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setup();
   await sl<CacheHelper>().init();
+
   await Future.wait([
     LocalNotificationService.init(),
-    Permission.notification
-        .request(), // Explicitly request Android notification permission
-
+    Permission.notification.request(),
     WorkManagerService().init(),
   ]);
 
   await sl<SqfliteHelper>().intiDB();
 
   runApp(
-    BlocProvider(
-      create: (context) => TaskCubit()
-        ..getTheme()
-        ..getTasks(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TaskCubit()..getTasks(),
+        ),
+        BlocProvider(
+          create: (context) => ThemeCubit()..getTheme(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

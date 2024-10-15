@@ -194,17 +194,17 @@ class TaskCubit extends Cubit<TaskState> {
     });
   }
 
-  bool isDark = false;
-  void changeTheme() async {
-    isDark = !isDark;
-    await sl<CacheHelper>().saveData(key: 'isDark', value: isDark);
-    emit(ChangeThemeState());
-  }
+  // bool isDark = false;
+  // void changeTheme() async {
+  //   isDark = !isDark;
+  //   await sl<CacheHelper>().saveData(key: 'isDark', value: isDark);
+  //   emit(ChangeThemeState());
+  // }
 
-  void getTheme() async {
-    isDark = await sl<CacheHelper>().getData(key: 'isDark');
-    emit(GetThemeState());
-  }
+  // void getTheme() async {
+  //   isDark = await sl<CacheHelper>().getData(key: 'isDark');
+  //   emit(GetThemeState());
+  // }
 
   // Search tasks
   void searchTasks(String query) {

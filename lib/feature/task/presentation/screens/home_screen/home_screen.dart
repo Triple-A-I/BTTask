@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/commons/commons.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../components/date_picker.dart';
@@ -106,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20.h),
                 buildSearchField(context),
                 SizedBox(height: 20.h),
-                buildDatePicker(context),
+                Expanded(child: buildDatePicker(context)),
               ],
             ),
           ),

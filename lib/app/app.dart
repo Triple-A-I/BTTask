@@ -7,6 +7,8 @@ import '../core/utils/app_strings.dart';
 import '../feature/auth/presentation/screens/splash_screen/splash_screen.dart';
 import '../feature/task/presentation/cubit/task_cubit.dart';
 import '../feature/task/presentation/cubit/task_state.dart';
+import '../feature/task/presentation/cubit/theme_cubit.dart';
+import '../feature/task/presentation/cubit/theme_states.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,16 +20,19 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return BlocBuilder<TaskCubit, TaskState>(
           builder: (context, state) {
-            return MaterialApp(
-                // title: 'To-Do App', =>//hard coded
-                title: AppStrings.appName,
-                theme: getAppTheme(),
-                darkTheme: getAppDarkTheme(),
-                themeMode: BlocProvider.of<TaskCubit>(context).isDark
-                    ? ThemeMode.dark
-                    : ThemeMode.light,
-                debugShowCheckedModeBanner: false,
-                home: const SplashScreen());
+            return BlocBuilder<ThemeCubit, ThemeState>(
+              builder: (context, state) {
+                return MaterialApp(
+                    title: AppStrings.appName,
+                    theme: getAppTheme(),
+                    darkTheme: getAppDarkTheme(),
+                    themeMode: BlocProvider.of<ThemeCubit>(context).isDark
+                        ? ThemeMode.dark
+                        : ThemeMode.light,
+                    debugShowCheckedModeBanner: false,
+                    home: const SplashScreen());
+              },
+            );
           },
         );
       },
