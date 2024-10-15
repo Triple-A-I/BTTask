@@ -71,7 +71,8 @@ class HomeScreen extends StatelessWidget {
   // Tablet layout
   Widget _buildTabletLayout(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(32.sp), // Adjust padding for tablet
+      padding:
+          EdgeInsets.symmetric(horizontal: 10.sp), // Adjust padding for tablet
       child: BlocBuilder<TaskCubit, TaskState>(
         builder: (context, state) {
           return Column(
@@ -94,7 +95,7 @@ class HomeScreen extends StatelessWidget {
   // Desktop layout
   Widget _buildDesktopLayout(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(48.sp), // Larger padding for desktop
+      padding: EdgeInsets.all(20.sp), // Larger padding for desktop
       child: Row(
         children: [
           Expanded(
@@ -102,6 +103,8 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildHeader(context),
+                SizedBox(height: 20.h),
+                buildSearchField(context),
                 SizedBox(height: 20.h),
                 buildDatePicker(context),
               ],
